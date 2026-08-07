@@ -5,10 +5,12 @@ RUN apt-get update && apt-get install -y \
     unzip \
     zip \
     libzip-dev \
-    libicu-dev \
-    libpng-dev
+    libicu-dev
 
-RUN docker-php-ext-install intl zip
+RUN docker-php-ext-install \
+    pdo_mysql \
+    intl \
+    zip
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
