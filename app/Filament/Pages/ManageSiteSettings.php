@@ -44,7 +44,7 @@ class ManageSiteSettings extends Page implements HasForms
                 ]),
             ]),
             Forms\Components\Section::make('الشعار وبيانات التواصل')->schema([
-                Forms\Components\FileUpload::make('logo')->label('الشعار')->image()->directory('settings'),
+                Forms\Components\FileUpload::make('logo')->label('الشعار')->image()->directory('settings')->disk('public'),
                 Forms\Components\FileUpload::make('favicon')->label('أيقونة المتصفح')->image()->directory('settings'),
                 Forms\Components\Grid::make(3)->schema([
                     Forms\Components\TextInput::make('phone')->label('الهاتف'),
