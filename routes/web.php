@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -23,6 +24,9 @@ Route::prefix('{locale}')->middleware(['setlocale'])->group(function () {
     Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
     Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
 
+
+    Route::get('/about', [AboutController::class, 'index'])
+        ->name('about');
 
     Route::get('/products', [ProductController::class, 'index'])
         ->name('products.index');

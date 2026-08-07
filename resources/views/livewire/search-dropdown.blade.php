@@ -3,7 +3,7 @@
     <input
         type="text"
         wire:model.live.debounce.300ms="q"
-        placeholder="{{ app()->getLocale() == 'ar' ? 'ابحث عن خدمة  او منتج...' : 'Search services or blog...' }}"
+        placeholder="{{ app()->getLocale() == 'ar' ? 'ابحث عن خدمة أو منتج أو مشروع...' : 'Search services, products or projects...' }}"
         class="w-full h-12 border rounded-full px-5">
 
     @if(strlen($q) >= 2)
@@ -35,23 +35,23 @@
 
             @endforeach
 
-            {{-- المقالات --}}
-            @foreach($posts as $post)
+            {{-- المنتجات --}}
+            @foreach($products as $product)
 
-                <a href="{{ route('blog.show', [
+                <a href="{{ route('products.show', [
                         'locale' => app()->getLocale(),
-                        'post' => $post->slug
+                        'product' => $product->slug
                     ]) }}"
                    class="flex items-center justify-between p-4 hover:bg-slate-50 border-b">
 
                     <div>
 
                         <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                            {{ app()->getLocale() == 'ar' ? 'مقال' : 'Article' }}
+                            {{ app()->getLocale() == 'ar' ? 'منتج' : 'Product' }}
                         </span>
 
                         <div class="font-bold mt-2">
-                            {{ $post->trans('title') }}
+                            {{ $product->trans('name') }}
                         </div>
 
                     </div>
@@ -59,18 +59,44 @@
                 </a>
 
             @endforeach
+
+            {{-- المشاريع --}}
+            @foreach($projects as $project)
+
+                <a href="{{ route('portfolio.show', [
+                        'locale' => app()->getLocale(),
+                        'project' => $project->slug
+                    ]) }}"
+                   class="flex items-center justify-between p-4 hover:bg-slate-50 border-b">
+
+                    <div>
+
+                        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">
+                            {{ app()->getLocale() == 'ar' ? 'مشروع' : 'Project' }}
+                        </span>
+
+                        <div class="font-bold mt-2">
+                            {{ $project->trans('title') }}
+                        </div>
+
+                    </div>
+
+                </a>
+
+            @endforeach
+
             @if(
                 $services->count() ||
-                $posts->count() ||
+                $products->count() ||
                 $projects->count()
             )
 
                 <div class="border-t bg-slate-50">
 
                     <a href="{{ route('search', [
-                'locale' => app()->getLocale(),
-                'q' => $q
-            ]) }}"
+                        'locale' => app()->getLocale(),
+                        'q' => $q
+                    ]) }}"
                        class="block p-4 text-center font-bold text-blue-600 hover:bg-blue-50">
 
                         {{ app()->getLocale() == 'ar'
@@ -82,7 +108,12 @@
                 </div>
 
             @endif
-            @if($services->isEmpty() && $posts->isEmpty())
+
+            @if(
+                $services->isEmpty() &&
+                $products->isEmpty() &&
+                $projects->isEmpty()
+            )
 
                 <div class="p-4 text-center text-slate-500">
                     {{ app()->getLocale() == 'ar'

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Product;
+use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\View;
@@ -26,17 +27,18 @@ class AppServiceProvider extends ServiceProvider
                     ->orderBy('order')
                     ->get()
             );
-
+            View::share('services', Service::active()->get());
             $view->with(
                 'settings',
                 SiteSetting::first()
             );
             $view->with(
-                'products',  Product::where('is_active', true)
-                ->latest()
-                ->take(10)
-                      ->get()
-        );
+                'headerProducts',
+                Product::where('is_active', true)
+                    ->latest()
+                    ->take(10)
+                    ->get()
+            );
 
         });
     }

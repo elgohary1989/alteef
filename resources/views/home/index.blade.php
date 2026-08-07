@@ -49,7 +49,10 @@
                                  style="background-image:url('{{ asset('storage/'.$slide->image) }}')">
                                 <div class="sk-container">
 
-                                    <div class="sk-hero-content">
+                                    <div
+                                        class="sk-hero-content"
+                                        data-aos="fade-up"
+                                        data-aos-duration="1200">
 
                                         @if($slide->trans('eyebrow'))
                                             <div class="sk-badge">
@@ -125,34 +128,31 @@
                     <h2 class="text-3xl md:text-4xl font-extrabold">{{ $locale === 'ar' ? 'حلول هندسية وصناعية متكاملة' : 'Complete solutions for your business' }}</h2>
                 </div>
                 <div class="grid md:grid-cols-2 gap-6">
+
                     @foreach($services as $service)
-                        <a href="{{ route('services.show', ['locale'=>$locale, 'service'=>$service->slug]) }}"
-                           class="
-group
-relative
-overflow-hidden
-bg-white
-rounded-3xl
-p-8
-border
-border-slate-100
-shadow-sm
 
-hover:shadow-2xl
-hover:-translate-y-2
-transition-all
-duration-500
-"><div
-                                class="w-16 h-16 rounded-2xl bg-orange-100 text-orange-500 flex items-center justify-center mb-6
-           group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+                        <a
+                            href="{{ route('services.show', ['locale'=>$locale,'service'=>$service->slug]) }}"
+                            class="service-card group relative overflow-hidden bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
 
-                                @svg($service->icon ?: 'heroicon-o-squares-2x2', 'w-8 h-8')
+                            <div class="w-16 h-16 rounded-2xl bg-orange-100 text-orange-500 flex items-center justify-center mb-6 group-hover:bg-orange-500 group-hover:text-white transition-all duration-300">
+
+                                @svg($service->icon ?: 'heroicon-o-squares-2x2','w-8 h-8')
 
                             </div>
-                            <h3 class="font-bold text-lg mb-2 group-hover:text-signal transition">{{ $service->trans('title') }}</h3>
-                            <p class="text-slate text-sm leading-relaxed">{{ $service->trans('summary') }}</p>
+
+                            <h3 class="text-xl font-bold mb-4 group-hover:text-orange-500 transition">
+                                {{ $service->trans('title') }}
+                            </h3>
+
+                            <p class="text-slate-500 leading-8">
+                                {{ $service->trans('summary') }}
+                            </p>
+
                         </a>
+
                     @endforeach
+
                 </div>
             </div>
         </section>
@@ -187,7 +187,8 @@ duration-500
     {{-- ================= OUR CLIENTS ================= --}}
     @if($clients->count())
 
-        <section class="py-24 bg-white overflow-hidden">
+        <section class="py-24 bg-white overflow-hidden"
+                 data-aos="fade-up">
 
             <div class="max-w-7xl mx-auto px-6">
 
@@ -269,23 +270,7 @@ duration-500
     @endif
     {{--
 
-    @if($sectors->count())
-        <section class="py-16 bg-white border-y border-line">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="section-eyebrow mb-10">
-                    {{ $locale == 'ar' ? 'القطاعات التي نخدمها' : 'SECTORS WE SERVE' }}
-                </div>
-                 <div class="flex flex-wrap justify-center gap-3">
-                    @foreach($sectors as $sector)
-                        <span class="px-5 py-2.5 rounded-full border border-line text-sm font-medium text-ink/80 hover:border-signal transition">
-                {{ $sector->trans('title') }}
-            </span>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-    @endif
-    {{--
+
         {{-- ===== شريط إحصائيات إضافي ===== --}}
     @if($stats->count() > 3)
         <section class="bg-ink text-white py-16">
@@ -308,7 +293,8 @@ duration-500
             <div class="max-w-7xl mx-auto px-6">
 
                 {{-- Header --}}
-                <div class="max-w-3xl mx-auto text-center mb-16">
+                <div class="max-w-3xl mx-auto text-center mb-16"
+                     data-aos="fade-up">
 
                     <div class="section-eyebrow text-center">
                         {{ $locale == 'ar' ? 'أعمالنا' : 'Portfolio' }}
@@ -337,12 +323,12 @@ duration-500
 
                     @foreach($projects as $project)
 
-                        <a href="{{ route('portfolio.show', [
-            'locale' => $locale,
-            'project' => $project->slug,
-        ]) }}"
-                           class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-
+                        <a
+                            href="{{ route('portfolio.show',[
+        'locale'=>$locale,
+        'project'=>$project->slug
+    ]) }}"
+                            class="project-card group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
                             {{-- الصورة --}}
                             <div class="relative h-64 overflow-hidden bg-gray-100">
 
@@ -464,7 +450,7 @@ duration-500
                 </div>
                  <div class="grid md:grid-cols-3 gap-6 mt-10">
                     @foreach($testimonials->take(3) as $t)
-                        <div class="border border-line rounded-2xl p-7">
+                         <div class="testimonial-card border border-line rounded-2xl p-7">
                             <p class="text-ink/80 leading-relaxed mb-6">"{{ $t->trans('content') }}"</p>
                             <div class="flex items-center gap-3">
                                 @if($t->avatar)
@@ -498,81 +484,29 @@ duration-500
 
 <script>
 
-    document.addEventListener("DOMContentLoaded", () => {
 
-        const hero = document.querySelector(".sk-hero");
-        const dots = document.querySelector(".sk-dot-pattern");
 
-        hero.addEventListener("mousemove",(e)=>{
+        document.addEventListener("DOMContentLoaded", () => {
 
-            const rect = hero.getBoundingClientRect();
+            const hero = document.querySelector(".sk-hero");
+            const dots = document.querySelector(".sk-dot-pattern");
 
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            if (hero && dots) {
+                hero.addEventListener("mousemove", (e) => {
 
-            dots.style.setProperty("--mouse-x",`${x}px`);
-            dots.style.setProperty("--mouse-y",`${y}px`);
+                    const rect = hero.getBoundingClientRect();
 
-        });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
 
-        const swiper = new Swiper(".clientsSwiper", {
-            slidesPerView: "auto",
-            spaceBetween: 35,
-            loop: true,
-            speed: 5000,
-            allowTouchMove: false,
-
-            autoplay: {
-                delay: 1,
-                disableOnInteraction: false,
-            },
-        });
-
-        document.querySelectorAll(".client-card").forEach(card => {
-
-            card.addEventListener("mouseenter", () => {
-                swiper.autoplay.pause();
-            });
-
-            card.addEventListener("mouseleave", () => {
-                swiper.autoplay.resume();
-            });
+                    dots.style.setProperty("--mouse-x", `${x}px`);
+                    dots.style.setProperty("--mouse-y", `${y}px`);
+                });
+            }
 
         });
 
-        document.querySelectorAll(".client-card").forEach(card => {
 
-            card.addEventListener("mouseenter", () => {
-                clientsSwiper.autoplay.stop();
-            });
 
-            card.addEventListener("mouseleave", () => {
-                clientsSwiper.autoplay.start();
-            });
 
-        });
-
-    });
-    const heroSwiper = new Swiper(".heroSwiper", {
-        loop: true,
-        effect: "fade",
-        speed: 1200,
-
-        autoplay: {
-            delay: 6000,
-            disableOnInteraction: false,
-        },
-
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-    });
 </script>

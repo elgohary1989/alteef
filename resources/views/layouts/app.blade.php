@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     @livewireStyles
     <title>
         {{ $settings->trans('site_name') ?? 'Company' }}
@@ -302,7 +305,35 @@
         .swiper-button-prev{
             color:#f47d2b;
         }
+        .service-card{
+            transition:all .5s ease;
+        }
 
+        .service-card:hover{
+            transform:translateY(-12px);
+            box-shadow:0 30px 60px rgba(0,0,0,.12);
+        }
+
+        .project-card{
+            transition:all .5s ease;
+        }
+
+        .project-card:hover{
+            transform:translateY(-12px);
+            box-shadow:0 30px 60px rgba(0,0,0,.12);
+        }
+
+        .client-item img{
+            filter:grayscale(100%);
+            opacity:.7;
+            transition:.4s;
+        }
+
+        .client-item:hover img{
+            filter:none;
+            opacity:1;
+            transform:scale(1.08);
+        }
         .swiper-pagination-bullet{
             background:#fff;
         }
@@ -441,6 +472,82 @@
         });
 
     });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+    AOS.init({
+
+        duration: 800,
+
+        easing: 'ease-out',
+
+        once: true,
+
+        offset: 80,
+
+    });
+</script>
+<script>
+
+
+
+    /* آراء العملاء */
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        gsap.utils.toArray(".service-card").forEach(card => {
+
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: .8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%"
+                }
+            });
+
+        });
+
+        gsap.utils.toArray(".project-card").forEach(card => {
+
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: .8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%"
+                }
+            });
+
+        });
+
+        gsap.utils.toArray(".testimonial-card").forEach(card => {
+
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: .8,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%"
+                }
+            });
+
+        });
+
+    });
+
 </script>
 </body>
 </html>

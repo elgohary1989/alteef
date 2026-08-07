@@ -37,7 +37,7 @@
                    class="{{ request()->routeIs('home') ? 'text-blue-600' : '' }} hover:text-blue-600 transition">
                     {{ $locale == 'ar' ? 'الرئيسية' : 'Home' }}
                 </a>
-                <a href="{{ route('blog.index', ['locale' => $locale]) }}"
+                <a href="{{ route('about', ['locale' => $locale]) }}"
                    class="{{ request()->routeIs('blog.*') ? 'text-blue-600' : '' }} hover:text-blue-600 transition">
                     {{ $locale == 'ar' ? 'عن الشركة' : 'About us' }}
                 </a>
@@ -156,7 +156,7 @@
 
                         <div class="max-h-[420px] overflow-y-auto">
 
-                            @foreach($products->take(10) as $product)
+                            @foreach($headerProducts->take(10) as $product)
 
                                 <a href="{{ route('products.show', [
                         'locale'  => $locale,

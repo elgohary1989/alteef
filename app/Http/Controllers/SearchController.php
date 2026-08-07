@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Service;
@@ -21,7 +22,7 @@ class SearchController extends Controller
         $type = $request->get('type', 'all');
 
         $services = collect();
-        $posts = collect();
+        $products = collect();
         $portfolio = collect();
         $sectors = collect();
 
@@ -65,20 +66,25 @@ class SearchController extends Controller
 
             /*
             |----------------------------------
-            | Blog
+
             |----------------------------------
             */
-            if ($type == 'all' || $type == 'posts') {
+            /*
+  |--------------------------------------------------------------------------
+  | Products
+  |--------------------------------------------------------------------------
+  */
 
-                $posts = Post::query()
+            if ($type == 'all' || $type == 'products') {
+
+                $products = Product::query()
 
                     ->when($locale == 'ar', function ($query) use ($q) {
 
                         $query->where(function ($q2) use ($q) {
 
-                            $q2->where('title_ar', 'like', "%{$q}%")
-                                ->orWhere('excerpt_ar', 'like', "%{$q}%")
-                                ->orWhere('content_ar', 'like', "%{$q}%");
+                            $q2->where('name_ar', 'like', "%{$q}%")
+                                ->orWhere('description_ar', 'like', "%{$q}%");
 
                         });
 
@@ -88,13 +94,14 @@ class SearchController extends Controller
 
                         $query->where(function ($q2) use ($q) {
 
-                            $q2->where('title_en', 'like', "%{$q}%")
-                                ->orWhere('excerpt_en', 'like', "%{$q}%")
-                                ->orWhere('content_en', 'like', "%{$q}%");
+                            $q2->where('name_en', 'like', "%{$q}%")
+                                ->orWhere('description_en', 'like', "%{$q}%");
 
                         });
 
                     })
+
+                    ->where('is_active', 1)
 
                     ->get();
             }
@@ -159,7 +166,7 @@ class SearchController extends Controller
             'q',
             'type',
             'services',
-            'posts',
+            'products',
             'portfolio',
             'sectors'
         ));

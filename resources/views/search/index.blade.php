@@ -9,7 +9,7 @@
 
         $totalResults =
             $services->count() +
-            $posts->count() +
+             $products->count() +
             $portfolio->count();
     @endphp
 
@@ -89,17 +89,17 @@
                     </a>
 
                     <a href="{{ route('search',[
-            'locale'=>$locale,
-            'q'=>$q,
-            'type'=>'posts'
-        ]) }}"
+    'locale'=>$locale,
+    'q'=>$q,
+    'type'=>'products'
+]) }}"
                        class="px-5 py-2 rounded-full transition
-           {{ $type=='posts'
-                ? 'bg-blue-600 text-white'
-                : 'bg-slate-100 hover:bg-slate-200' }}">
+{{ $type=='products'
+    ? 'bg-blue-600 text-white'
+    : 'bg-slate-100 hover:bg-slate-200' }}">
 
-                        {{ $locale=='ar' ? 'المقالات' : 'Articles' }}
-                        ({{ $posts->count() }})
+                        {{ $locale=='ar' ? 'المنتجات' : 'Products' }}
+                        ({{ $products->count() }})
 
                     </a>
 
@@ -181,49 +181,51 @@
 
             @endif
 
-            {{-- Blog --}}
+            {{-- Products --}}
             @if(
-     ($type=='all' || $type=='posts')
-     && $posts->count()
- )
+                ($type=='all' || $type=='products')
+                && $products->count()
+            )
 
                 <div class="mb-14">
 
                     <h2 class="text-3xl font-bold mb-6">
-                        {{ $locale == 'ar' ? 'المقالات' : 'Articles' }}
+                        {{ $locale == 'ar' ? 'المنتجات' : 'Products' }}
                     </h2>
 
                     <div class="space-y-5">
 
-                        @foreach($posts as $post)
+                        @foreach($products as $product)
 
-                            <a href="{{ route('blog.show', [
-                            'locale' => $locale,
-                            'post' => $post->slug
-                        ]) }}"
+                            <a href="{{ route('products.show',[
+                'locale'=>$locale,
+                'product'=>$product->slug
+            ]) }}"
                                class="block bg-white border rounded-2xl p-5 hover:shadow-xl transition">
 
                                 <div class="flex gap-5">
 
-                                    @if($post->featured_image)
+                                    @if($product->featured_image)
+
                                         <img
-                                            src="{{ asset('storage/'.$post->featured_image) }}"
-                                            alt="{{ $post->trans('title') }}"
+                                            src="{{ asset('storage/'.$product->featured_image) }}"
+                                            alt="{{ $product->trans('name') }}"
                                             class="w-28 h-28 rounded-xl object-cover">
+
                                     @endif
 
                                     <div>
 
-                                    <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">
-                                        {{ $locale == 'ar' ? 'مقال' : 'Article' }}
-                                    </span>
+                        <span class="bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full">
+                            {{ $locale=='ar' ? 'منتج' : 'Product' }}
+                        </span>
 
                                         <h3 class="text-xl font-bold mt-3 mb-2">
-                                            {{ $post->trans('title') }}
+                                            {{ $product->trans('name') }}
                                         </h3>
 
                                         <p class="text-slate-600">
-                                            {{ Str::limit($post->trans('excerpt'),180) }}
+                                            {{ Str::limit(strip_tags($product->trans('description')),180) }}
                                         </p>
 
                                     </div>
