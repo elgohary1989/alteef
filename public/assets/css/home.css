@@ -1309,17 +1309,97 @@
     font-size:24px;
     line-height:1;
 }
+
+
 .clients-marquee{
     width:100%;
     overflow:hidden;
     position:relative;
+    padding:10px 0;
 }
 
 .clients-track{
     display:flex;
     align-items:center;
     width:max-content;
+    animation:clientsMove 30s linear infinite;
     will-change:transform;
+}
+
+/* يتوقف عند الوقوف بالماوس */
+.clients-marquee:hover .clients-track{
+    animation-play-state: paused !important;
+}
+
+.client-item{
+
+    width:180px;
+    height:90px;
+
+    margin:0 14px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    transition:.35s;
+}
+
+.client-item:hover{
+
+    transform:translateY(-5px);
+
+    border-color:#f97316;
+
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+}
+
+.client-item img{
+
+    max-width:110px;
+    max-height:45px;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+
+    filter:grayscale(100%);
+    opacity:.75;
+
+    transition:.35s;
+}
+
+.client-item:hover img{
+
+    filter:none;
+    opacity:1;
+    transform:scale(1.05);
+}
+
+@keyframes clientsMove{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(calc(-50%));
+    }
+
+}
+
+/* RTL */
+html[dir="rtl"] .clients-track{
+    animation-direction:reverse;
 }
 
 .client-card{

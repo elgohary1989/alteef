@@ -3,7 +3,7 @@
     <input
         type="text"
         wire:model.live.debounce.300ms="q"
-        placeholder="{{ app()->getLocale() == 'ar' ? 'ابحث عن خدمة او مشروع او منتج...' : 'Search services or blog...' }}"
+        placeholder="{{ app()->getLocale() == 'ar' ? 'ابحث عن خدمة  او منتج...' : 'Search services or blog...' }}"
         class="w-full h-12 border rounded-full px-5">
 
     @if(strlen($q) >= 2)

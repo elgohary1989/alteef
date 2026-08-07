@@ -112,62 +112,7 @@
 
 
 
-    {{-- ===== شعارات العملاء ===== --}}
-    @if($clients->count())
 
-        <section class="clients-section">
-
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="section-eyebrow mb-10">
-                    {{ $locale == 'ar' ? 'عملاؤنا' : 'Our Clients' }}
-                </div>
-            </div>
-
-
-            <div class="swiper clientsSwiper">
-
-                <div class="swiper-wrapper">
-
-                    @foreach($clients as $client)
-
-                        <div class="swiper-slide">
-
-                            @if($client->url)
-                                <a href="{{ $client->url }}"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="client-card">
-                                    @else
-                                        <div class="client-card">
-                                            @endif
-
-                                            <img
-                                                src="{{ asset('storage/'.$client->logo) }}"
-                                                class="client-logo"
-                                                alt="{{ $client->name }}">
-
-                                        @if($client->url)
-                                </a>
-                            @else
-                        </div>
-                        @endif
-
-                </div>
-
-                @endforeach
-
-            </div>
-
-            </div>
-
-            </div>
-
-
-
-
-
-        </section>
-    @endif
 
     {{-- ===== الخدمات ===== --}}
     @if($services->count())
@@ -237,6 +182,89 @@ duration-500
             @endforeach
 
         </div>
+
+    @endif
+    {{-- ================= OUR CLIENTS ================= --}}
+    @if($clients->count())
+
+        <section class="py-24 bg-white overflow-hidden">
+
+            <div class="max-w-7xl mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+            <span class="text-orange-500 uppercase tracking-widest font-bold">
+
+                {{ $locale=='ar'
+                    ? 'عملاؤنا'
+                    : 'OUR CLIENTS' }}
+
+            </span>
+
+                    <h2 class="text-4xl font-black text-slate-900 mt-4">
+
+                        {{ $locale=='ar'
+                            ? 'شركاء النجاح'
+                            : 'Trusted By Leading Companies' }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="clients-marquee">
+
+                <div class="clients-track">
+
+                    @foreach($clients as $client)
+
+                        <div class="client-item">
+
+                            @if($client->url)
+                                <a href="{{ $client->url }}" target="_blank">
+                                    @endif
+
+                                    <img
+                                        src="{{ asset('storage/'.$client->logo) }}"
+                                        alt="{{ $client->name }}">
+
+                                    @if($client->url)
+                                </a>
+                            @endif
+
+                        </div>
+
+                    @endforeach
+
+
+                    {{-- تكرار مرة ثانية للحركة اللانهائية --}}
+
+                    @foreach($clients as $client)
+
+                        <div class="client-item">
+
+                            @if($client->url)
+                                <a href="{{ $client->url }}" target="_blank">
+                                    @endif
+
+                                    <img
+                                        src="{{ asset('storage/'.$client->logo) }}"
+                                        alt="{{ $client->name }}">
+
+                                    @if($client->url)
+                                </a>
+                            @endif
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        </section>
 
     @endif
     {{--
