@@ -443,29 +443,112 @@
 
     {{-- ===== آراء العملاء ===== --}}
     @if($testimonials->count())
-        <section class="py-24 bg-white border-t border-line">
+
+        <section class="py-28 bg-slate-50">
+
             <div class="max-w-7xl mx-auto px-6">
-                <div class="section-eyebrow mb-10">
-                    {{ $locale == 'ar' ? 'آراء عملائنا' : 'TESTIMONIALS' }}
+
+                <div class="max-w-3xl mx-auto text-center mb-16">
+
+                    <div class="section-eyebrow text-center">
+                        {{ $locale == 'ar' ? 'آراء العملاء' : 'Testimonials' }}
+                    </div>
+
+                    <h2 class="text-4xl md:text-5xl font-black mt-4 mb-5">
+                        {{ $locale == 'ar'
+                            ? 'ماذا يقول عملاؤنا'
+                            : 'What Our Clients Say' }}
+                    </h2>
+
+                    <p class="text-slate-500 text-lg">
+                        {{ $locale == 'ar'
+                            ? 'نفخر بثقة عملائنا وشركائنا في مختلف القطاعات'
+                            : 'Trusted by clients across multiple industries' }}
+                    </p>
+
                 </div>
-                 <div class="grid md:grid-cols-3 gap-6 mt-10">
-                    @foreach($testimonials->take(3) as $t)
-                         <div class="testimonial-card border border-line rounded-2xl p-7">
-                            <p class="text-ink/80 leading-relaxed mb-6">"{{ $t->trans('content') }}"</p>
-                            <div class="flex items-center gap-3">
-                                @if($t->avatar)
-                                    <img src="{{ asset('storage/'.$t->avatar) }}" class="w-11 h-11 rounded-full object-cover">
-                                @endif
-                                <div>
-                                    <div class="font-bold text-sm">{{ $t->client_name }}</div>
-                                    <div class="text-slate text-xs">{{ $t->trans('client_position') }} - {{ $t->client_company }}</div>
-                                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    @foreach($testimonials->take(6) as $t)
+
+                        <div
+                            class="testimonial-card group bg-white rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+
+                            {{-- Rating --}}
+                            <div class="flex items-center mb-6">
+
+                                @for($i = 1; $i <= 5; $i++)
+
+                                    <svg
+                                        class="w-5 h-5 text-amber-400"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20">
+
+                                        <path d="M9.049.927c.3-.921 1.603-.921 1.902 0l1.562 4.81h5.056c.969 0 1.371 1.24.588 1.81l-4.09 2.972 1.562 4.81c.3.922-.755 1.688-1.539 1.118L10 13.477l-4.09 2.97c-.783.57-1.838-.196-1.539-1.117l1.562-4.81-4.09-2.972c-.783-.57-.38-1.81.588-1.81h5.056L9.05.927z"/>
+
+                                    </svg>
+
+                                @endfor
+
                             </div>
+
+                            {{-- Content --}}
+                            <p class="text-slate-600 leading-8 text-lg mb-8">
+                                "{{ $t->trans('content') }}"
+                            </p>
+
+                            {{-- Client --}}
+                            <div class="flex items-center gap-4 pt-6 border-t border-slate-100">
+
+                                @if($t->avatar)
+
+                                    <img
+                                        src="{{ asset('storage/'.$t->avatar) }}"
+                                        alt="{{ $t->client_name }}"
+                                        class="w-14 h-14 rounded-full object-cover ring-4 ring-orange-100">
+
+                                @else
+
+                                    <div
+                                        class="w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center font-bold text-orange-500">
+
+                                        {{ mb_substr($t->client_name, 0, 1) }}
+
+                                    </div>
+
+                                @endif
+
+                                <div>
+
+                                    <h4 class="font-bold text-slate-900">
+                                        {{ $t->client_name }}
+                                    </h4>
+
+                                    <p class="text-sm text-slate-500">
+
+                                        {{ $t->trans('client_position') }}
+
+                                        @if($t->client_company)
+                                            • {{ $t->client_company }}
+                                        @endif
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
                         </div>
+
                     @endforeach
+
                 </div>
+
             </div>
+
         </section>
+
     @endif
 
     {{-- ===== دعوة للتواصل ===== --}}
