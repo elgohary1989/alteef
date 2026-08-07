@@ -48,4 +48,5 @@ RUN php artisan view:clear
 
 EXPOSE 8080
 
+
 CMD php artisan serve --host=0.0.0.0 --port=${PORT}
