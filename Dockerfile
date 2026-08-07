@@ -1,13 +1,6 @@
-FROM php:8.3-cli
+FROM dunglas/frankenphp:php8.3
 
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    zip \
-    libzip-dev \
-    libicu-dev
-
-RUN docker-php-ext-install \
+RUN install-php-extensions \
     pdo_mysql \
     intl \
     zip
@@ -20,6 +13,8 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
+RUN php artisan optimize:clear
+
 EXPOSE 8080
 
-CMD php artisan serve --host=0.0.0.0 --port=${PORT}
+CMD ["php", "artisan", "octane:frankenphp", "--host=0.0.0.0", "--port=8080"]
