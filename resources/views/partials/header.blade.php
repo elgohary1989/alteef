@@ -16,16 +16,34 @@
 
             {{-- Logo --}}
             <a href="{{ route('home', ['locale' => $locale]) }}"
-               class="flex items-center gap-3">
+               class="flex items-center">
 
                 @if(!empty($settings->logo))
-                    <img src="{{ asset('storage/'.$settings->logo) }}"
-                         alt="{{ $settings->trans('site_name') }}"
-                         class="h-10 w-auto">
+
+                    <div class="w-14 h-14 rounded-full bg-white
+                    flex items-center justify-center
+                    overflow-hidden
+                    border border-slate-200
+                    shadow-sm
+                    transition-all duration-300
+                    hover:scale-105">
+
+                        <img
+                            src="{{ asset('storage/'.$settings->logo) }}"
+                            alt="{{ $settings->trans('site_name') }}"
+                            class="w-[85%] h-[85%] object-contain"
+                        >
+
+                    </div>
+
                 @else
-                    <span class="text-2xl font-extrabold text-gray-900">
-                        {{ $settings->trans('site_name') ?? 'Company' }}
-                    </span>
+
+                    <div class="w-14 h-14 rounded-full bg-slate-900
+                    flex items-center justify-center
+                    text-white font-bold text-sm">
+                        TIEMS
+                    </div>
+
                 @endif
 
             </a>
@@ -166,14 +184,30 @@
 
                                     <div class="w-14 h-14 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
 
-                                        @if($product->image)
-                                            <img
-                                                src="{{ asset('storage/'.$product->image) }}"
-                                                alt="{{ $product->trans('name') }}"
-                                                class="w-full h-full object-cover">
+                                        @if($product->featured_image)
+                                            <div class="w-full h-full flex items-center justify-center bg-white p-3">
+                                                <img
+                                                    src="{{ asset('storage/' . $product->featured_image) }}"
+                                                    alt="{{ $product->trans('name') }}"
+                                                    class="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-300 hover:scale-105"
+                                                    loading="lazy"
+                                                >
+                                            </div>
                                         @else
-                                            <div class="w-full h-full flex items-center justify-center text-gray-400">
-                                                📦
+                                            <div class="w-full h-full flex items-center justify-center bg-gray-50 text-gray-400">
+                                                <svg
+                                                    class="w-12 h-12"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="1.5"
+                                                        d="M20 7l-8-4-8 4m16 0v10l-8 4m8-14l-8 4m0 0L4 7m8 4v10"
+                                                    />
+                                                </svg>
                                             </div>
                                         @endif
 
