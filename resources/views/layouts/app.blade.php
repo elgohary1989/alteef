@@ -322,6 +322,60 @@
             transform:translateY(-12px);
             box-shadow:0 30px 60px rgba(0,0,0,.12);
         }
+        .heroSwiper .swiper-slide-active .sk-hero{
+            animation: heroZoom 8s linear forwards;
+        }
+
+        @keyframes heroZoom{
+            from{
+                transform: scale(1);
+            }
+
+            to{
+                transform: scale(1.12);
+            }
+        }
+        .heroSwiper .swiper-slide{
+            overflow:hidden;
+        }
+
+        .sk-hero{
+            transform:scale(1);
+            will-change:transform;
+        }
+        .heroSwiper .swiper-slide-active .sk-hero{
+            animation: heroZoom 8s linear forwards;
+        }
+        .heroSwiper .swiper-slide{
+            overflow:hidden;
+        }
+
+        .heroSwiper .swiper-slide-active .sk-hero{
+            animation: heroZoom 8s ease-out forwards;
+        }
+
+        @keyframes heroZoom{
+            from{
+                transform:scale(1);
+            }
+
+            to{
+                transform:scale(1.12);
+            }
+        }
+        @keyframes heroZoom{
+            0%{
+                transform:scale(1) translateX(0);
+            }
+
+            50%{
+                transform:scale(1.06) translateX(-15px);
+            }
+
+            100%{
+                transform:scale(1.12) translateX(15px);
+            }
+        }
 
         .client-item img{
             filter:grayscale(100%);
@@ -341,7 +395,21 @@
         .swiper-pagination-bullet-active{
             background:#f47d2b;
         }
+        .swiper-slide-active .sk-hero-content{
+            animation: contentReveal 1s ease;
+        }
 
+        @keyframes contentReveal{
+            from{
+                opacity:0;
+                transform:translateY(40px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
     </style>
 
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
@@ -446,16 +514,25 @@
 
             loop: true,
 
-            effect: "fade",
 
-            fadeEffect: {
-                crossFade: true
+
+            effect: "creative",
+
+            creativeEffect: {
+                prev: {
+                    opacity: 0,
+                    scale: 1.2,
+                },
+                next: {
+                    opacity: 0,
+                    scale: 1.2,
+                },
             },
 
-            speed: 1500,
+            speed: 2500,
 
             autoplay: {
-                delay: 5000,
+                delay: 8000,
                 disableOnInteraction: false,
             },
 
