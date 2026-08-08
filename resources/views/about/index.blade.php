@@ -727,23 +727,7 @@
                 offset: 80,
             });
 
-            if (typeof gsap !== "undefined") {
 
-                gsap.registerPlugin(ScrollTrigger);
-
-                gsap.from(".counter", {
-                    textContent: 0,
-                    duration: 2,
-                    ease: "power2.out",
-                    snap: { textContent: 1 },
-                    stagger: .2,
-                    scrollTrigger: {
-                        trigger: ".counter",
-                        start: "top 85%",
-                    }
-                });
-
-            }
 
         });
 
