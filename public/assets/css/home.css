@@ -1311,47 +1311,10 @@
 }
 
 
-.clients-marquee{
-    width:100%;
-    overflow:hidden;
-    position:relative;
-    padding:10px 0;
-}
 
-.clients-track{
-    display:flex;
-    align-items:center;
-    width:max-content;
-    animation:clientsMove 30s linear infinite;
-    will-change:transform;
-}
 
-/* يتوقف عند الوقوف بالماوس */
-.clients-marquee:hover .clients-track{
-    animation-play-state: paused !important;
-}
 
-.client-item{
 
-    width:180px;
-    height:90px;
-
-    margin:0 14px;
-
-    flex-shrink:0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#fff;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:20px;
-
-    transition:.35s;
-}
 
 .client-item:hover{
 
@@ -1402,57 +1365,114 @@ html[dir="rtl"] .clients-track{
     animation-direction:reverse;
 }
 
-.client-card{
-    width:230px;
-    height:120px;
-    margin:0 18px;
-    background:#fff;
-    border:1px solid #eee;
-    border-radius:18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-shrink:0;
-    box-shadow:0 8px 18px rgba(0,0,0,.05);
-    transition:.3s;
-}
+/* ================= Clients New Design ================= */
 
-.client-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 30px rgba(0,0,0,.12);
-}
-
-.client-logo{
-    height:80px;
-    width:auto;
-    transition:.3s;
-}
-
-.client-card:hover .client-logo{
-    transform:scale(1.08);
+.clients-section{
+    padding:60px 0;
+    position:relative;
+    overflow:hidden;
 }
 
 .clients-marquee{
-    width:100%;
-    overflow:hidden;
     position:relative;
+    overflow:hidden;
+    width:100%;
+    padding:25px 0;
+}
+
+/* Fade على الجوانب */
+
+.clients-marquee::before,
+.clients-marquee::after{
+    content:'';
+    position:absolute;
+    top:0;
+    width:120px;
+    height:100%;
+    z-index:2;
+    pointer-events:none;
+}
+
+.clients-marquee::before{
+    right:0;
+    background:linear-gradient(
+        to left,
+        #fff,
+        transparent
+    );
+}
+
+.clients-marquee::after{
+    left:0;
+    background:linear-gradient(
+        to right,
+        #fff,
+        transparent
+    );
 }
 
 .clients-track{
     display:flex;
     align-items:center;
+    gap:30px;
     width:max-content;
-    animation: marquee 35s linear infinite;
+    animation:clientsScroll 40s linear infinite;
 }
 
-.client-card{
-    width:230px;
-    height:120px;
-    margin:0 18px;
+.clients-marquee:hover .clients-track{
+    animation-play-state:paused;
+}
+
+.client-item{
+    width:240px;
+    height:130px;
+
     flex-shrink:0;
+
+    background:#fff;
+    border:1px solid #eef2f7;
+    border-radius:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+
+    transition:all .35s ease;
 }
 
-@keyframes marquee{
+.client-item:hover{
+    transform:translateY(-8px);
+
+    border-color:#f47d2b;
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.12);
+}
+
+.client-item img{
+    max-width:180px;
+    max-height:80px;
+
+    object-fit:contain;
+
+    filter:grayscale(100%);
+    opacity:.75;
+
+    transition:.35s ease;
+}
+
+.client-item:hover img{
+    filter:none;
+    opacity:1;
+    transform:scale(1.08);
+}
+
+@keyframes clientsScroll{
+
     from{
         transform:translateX(0);
     }
@@ -1460,7 +1480,32 @@ html[dir="rtl"] .clients-track{
     to{
         transform:translateX(-50%);
     }
+
 }
+
+html[dir="rtl"] .clients-track{
+    animation-direction:reverse;
+}
+
+@media(max-width:768px){
+
+    .client-item{
+        width:180px;
+        height:100px;
+    }
+
+    .client-item img{
+        max-width:140px;
+        max-height:60px;
+    }
+}
+
+
+
+
+
+
+
 
 
 summary {
