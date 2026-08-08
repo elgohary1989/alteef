@@ -97,9 +97,47 @@
 
     </section>
 
-    {{-- ================= CHAIRMAN MESSAGE PREMIUM ================= --}}
-    {{-- ========================================================= --}}
+    {{-- ================================================= --}}
+    {{-- SECTION HEADER --}}
+    {{-- ================================================= --}}
 
+    <div
+        class="text-center mb-14 md:mb-20"
+        data-aos="fade-up"
+        data-aos-duration="900">
+
+    <span
+        class="inline-flex
+               px-5 py-2
+               rounded-full
+               bg-orange-500/10
+               border border-orange-500/20
+               text-orange-400
+               font-bold">
+
+        {{ $locale == 'ar'
+            ? 'كلمة المدير التنفيذي'
+            : 'CEO Message' }}
+
+    </span>
+
+
+        <h2
+            class="text-4xl
+               md:text-5xl
+               lg:text-6xl
+               font-black
+               text-white
+               mt-6
+               leading-tight">
+
+            {{ $locale == 'ar'
+                ? 'رسالة من الإدارة التنفيذية'
+                : 'Message From Executive Management' }}
+
+        </h2>
+
+    </div>
 
     {{-- ================= ABOUT ================= --}}
     <section
@@ -211,345 +249,6 @@
         </div>
 
     </section>
-    {{-- MANAGEMENT MESSAGE --}}
-    {{-- ========================================================= --}}
-
-    @if(
-        $about &&
-        (
-            $about->manager_image ||
-            ($locale === 'ar'
-                ? $about->manager_message_ar
-                : $about->manager_message_en)
-        )
-    )
-
-        <section class="relative py-24 md:py-32 bg-[#0B1220] overflow-hidden">
-
-            {{-- Background Effects --}}
-            <div class="absolute inset-0 pointer-events-none">
-
-                <div
-                    class="absolute -top-32 -left-32
-                   w-96 h-96
-                   bg-orange-500/10
-                   rounded-full
-                   blur-3xl">
-                </div>
-
-                <div
-                    class="absolute -bottom-40 -right-40
-                   w-[500px] h-[500px]
-                   bg-white/5
-                   rounded-full
-                   blur-3xl">
-                </div>
-
-                <div
-                    class="absolute top-1/2 left-1/2
-                   -translate-x-1/2 -translate-y-1/2
-                   w-[700px] h-[300px]
-                   bg-orange-500/5
-                   rounded-full
-                   blur-3xl">
-                </div>
-
-            </div>
-
-
-            <div class="relative max-w-7xl mx-auto px-6">
-
-
-                {{-- ================================================= --}}
-                {{-- HEADER --}}
-                {{-- ================================================= --}}
-
-                @if(
-                    ($locale === 'ar'
-                        ? $about->manager_message_ar
-                        : $about->manager_message_en)
-                )
-
-                    <div
-                        class="text-center mb-16 md:mb-20"
-                        data-aos="fade-up"
-                        data-aos-duration="900">
-
-                        {{-- Dynamic label --}}
-                        @if(
-                            ($locale === 'ar'
-                                ? $about->manager_position_ar
-                                : $about->manager_position_en)
-                        )
-
-                            <span
-                                class="inline-flex
-                               items-center
-                               px-5 py-2
-                               rounded-full
-                               bg-orange-500/15
-                               border border-orange-500/20
-                               text-orange-400
-                               font-bold
-                               text-sm">
-
-                        {{
-                            $locale === 'ar'
-                                ? $about->manager_position_ar
-                                : $about->manager_position_en
-                        }}
-
-                    </span>
-
-                        @endif
-
-
-                        {{-- Manager name --}}
-                        @if(
-                            ($locale === 'ar'
-                                ? $about->manager_name_ar
-                                : $about->manager_name_en)
-                        )
-
-                            <h2
-                                class="text-4xl
-                               md:text-5xl
-                               lg:text-6xl
-                               font-black
-                               text-white
-                               mt-6
-                               leading-tight">
-
-                                {{
-                                    $locale === 'ar'
-                                        ? $about->manager_name_ar
-                                        : $about->manager_name_en
-                                }}
-
-                            </h2>
-
-                        @endif
-
-                    </div>
-
-                @endif
-
-
-
-                {{-- ================================================= --}}
-                {{-- CONTENT --}}
-                {{-- ================================================= --}}
-
-                <div
-                    class="grid lg:grid-cols-12
-                   gap-12 lg:gap-16
-                   items-center">
-
-
-                    {{-- ================================================= --}}
-                    {{-- IMAGE --}}
-                    {{-- ================================================= --}}
-
-                    @if($about->manager_image)
-
-                        <div
-                            class="lg:col-span-4"
-                            data-aos="{{ $locale === 'ar' ? 'fade-left' : 'fade-right' }}"
-                            data-aos-duration="1000">
-
-                            <div class="relative group">
-
-
-                                {{-- Animated Border --}}
-                                <div
-                                    class="absolute
-                                   -inset-2
-                                   bg-gradient-to-b
-                                   from-orange-400
-                                   via-orange-500
-                                   to-orange-700
-                                   rounded-[38px]
-                                   opacity-80
-                                   group-hover:opacity-100
-                                   transition-opacity
-                                   duration-500">
-                                </div>
-
-
-                                {{-- Image --}}
-                                <div
-                                    class="relative
-                                   overflow-hidden
-                                   rounded-[32px]
-                                   border
-                                   border-white/10
-                                   bg-[#0B1220]
-                                   shadow-2xl">
-
-                                    <img
-                                        src="{{ asset('storage/' . $about->manager_image) }}"
-                                        alt="{{
-                                    $locale === 'ar'
-                                        ? $about->manager_name_ar
-                                        : $about->manager_name_en
-                                }}"
-                                        class="w-full
-                                       h-[500px]
-                                       md:h-[580px]
-                                       object-cover
-                                       group-hover:scale-105
-                                       transition-transform
-                                       duration-700">
-
-                                </div>
-
-
-                                {{-- Decorative Element --}}
-                                <div
-                                    class="absolute
-                                   -bottom-5
-                                   -right-5
-                                   w-20
-                                   h-20
-                                   rounded-2xl
-                                   border
-                                   border-orange-500/30
-                                   bg-orange-500/10
-                                   backdrop-blur-sm
-                                   -z-0">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    @endif
-
-
-
-                    {{-- ================================================= --}}
-                    {{-- MESSAGE --}}
-                    {{-- ================================================= --}}
-
-                    <div
-                        class="{{ $about->manager_image ? 'lg:col-span-8' : 'lg:col-span-12' }}"
-                        data-aos="{{ $locale === 'ar' ? 'fade-right' : 'fade-left' }}"
-                        data-aos-duration="1000"
-                        data-aos-delay="150">
-
-
-                        {{-- Quote --}}
-                        <div
-                            class="mb-8
-                           text-orange-500/20
-                           text-7xl
-                           md:text-8xl
-                           leading-none">
-
-                            <i class="fas fa-quote-left"></i>
-
-                        </div>
-
-
-                        {{-- Manager Message --}}
-                        <div
-                            class="text-lg
-                           md:text-xl
-                           text-gray-300
-                           leading-[2.1]
-                           prose
-                           prose-invert
-                           max-w-none">
-
-                            {!! $locale === 'ar'
-                                ? $about->manager_message_ar
-                                : $about->manager_message_en !!}
-
-                        </div>
-
-
-                        {{-- ================================================= --}}
-                        {{-- SIGNATURE --}}
-                        {{-- ================================================= --}}
-
-                        @if(
-                            ($locale === 'ar'
-                                ? $about->manager_name_ar
-                                : $about->manager_name_en)
-                        )
-
-                            <div
-                                class="mt-10
-                               pt-8
-                               border-t
-                               border-white/10
-                               flex
-                               items-center
-                               gap-5">
-
-
-                                {{-- Line --}}
-                                <div
-                                    class="w-14
-                                   h-1
-                                   rounded-full
-                                   bg-orange-500">
-                                </div>
-
-
-                                <div>
-
-                                    <h3
-                                        class="text-2xl
-                                       md:text-3xl
-                                       font-black
-                                       text-white">
-
-                                        {{
-                                            $locale === 'ar'
-                                                ? $about->manager_name_ar
-                                                : $about->manager_name_en
-                                        }}
-
-                                    </h3>
-
-
-                                    @if(
-                                        ($locale === 'ar'
-                                            ? $about->manager_position_ar
-                                            : $about->manager_position_en)
-                                    )
-
-                                        <p
-                                            class="text-orange-400
-                                           font-semibold
-                                           mt-2">
-
-                                            {{
-                                                $locale === 'ar'
-                                                    ? $about->manager_position_ar
-                                                    : $about->manager_position_en
-                                            }}
-
-                                        </p>
-
-                                    @endif
-
-                                </div>
-
-                            </div>
-
-                        @endif
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    @endif
     {{-- ================= STATISTICS ================= --}}
     <section class="relative py-28 bg-[#0B1220] overflow-hidden">
 
