@@ -748,5 +748,36 @@
         });
 
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
 
+            const counters = document.querySelectorAll('.counter');
+
+            counters.forEach(counter => {
+
+                const target = parseInt(counter.dataset.count) || 0;
+
+                let current = 0;
+
+                const increment = Math.max(1, Math.ceil(target / 100));
+
+                const updateCounter = () => {
+
+                    current += increment;
+
+                    if (current >= target) {
+                        counter.textContent = target.toLocaleString();
+                        return;
+                    }
+
+                    counter.textContent = current.toLocaleString();
+
+                    requestAnimationFrame(updateCounter);
+                };
+
+                updateCounter();
+            });
+
+        });
+    </script>
 @endpush
