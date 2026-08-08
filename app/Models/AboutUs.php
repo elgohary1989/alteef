@@ -52,6 +52,16 @@ class AboutUs extends Model
         'cta_button_text_en',
 
         'cta_button_link',
+        'manager_image',
+
+        'manager_name_ar',
+        'manager_name_en',
+
+        'manager_position_ar',
+        'manager_position_en',
+
+        'manager_message_ar',
+        'manager_message_en',
     ];
 
     public function features()

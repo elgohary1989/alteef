@@ -154,7 +154,49 @@ class AboutUsResource extends Resource
                             ]),
 
                     ]),
+                Section::make('السيد المدير')
+                    ->schema([
 
+                        FileUpload::make('manager_image')
+                            ->image()
+                            ->directory('aboutus/manager')
+                            ->imageEditor()
+                            ->label('صورة السيد المدير'),
+
+                        Tabs::make('Manager Languages')
+                            ->tabs([
+
+                                Tabs\Tab::make('العربية')
+                                    ->schema([
+
+                                        TextInput::make('manager_name_ar')
+                                            ->label('اسم السيد المدير'),
+
+                                        TextInput::make('manager_position_ar')
+                                            ->label('المنصب'),
+
+                                        RichEditor::make('manager_message_ar')
+                                            ->label('كلمة السيد المدير'),
+
+                                    ]),
+
+                                Tabs\Tab::make('English')
+                                    ->schema([
+
+                                        TextInput::make('manager_name_en')
+                                            ->label('Manager Name'),
+
+                                        TextInput::make('manager_position_en')
+                                            ->label('Position'),
+
+                                        RichEditor::make('manager_message_en')
+                                            ->label('Chairmans Message'),
+
+                    ]),
+
+            ]),
+
+    ]),
                 Section::make('Statistics')
                     ->schema([
 

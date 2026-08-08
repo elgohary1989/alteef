@@ -97,7 +97,101 @@
 
     </section>
 
+    {{-- ================= CHAIRMAN MESSAGE PREMIUM ================= --}}
+    <section class="relative py-32 bg-[#0B1220] overflow-hidden">
 
+        {{-- Background Effects --}}
+        <div class="absolute inset-0">
+
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+
+            <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl"></div>
+
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6">
+
+            <div class="text-center mb-20" data-aos="fade-up">
+
+            <span class="inline-flex px-5 py-2 rounded-full bg-orange-500/15 text-orange-400 font-bold">
+
+                {{ $locale == 'ar'
+                    ? 'كلمة السيد المدير'
+                    : "Chairman's Message" }}
+
+            </span>
+
+                <h2 class="text-5xl md:text-6xl font-black text-white mt-8">
+
+                    {{ $locale == 'ar'
+                        ? 'رسالة من الإدارة'
+                        : 'Message From Management' }}
+
+                </h2>
+
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-16 items-center">
+
+                {{-- Image --}}
+                <div class="lg:col-span-4" data-aos="fade-right">
+
+                    <div class="relative">
+
+                        <div class="absolute -inset-3 bg-gradient-to-b from-orange-500 to-orange-700 rounded-[40px]"></div>
+
+                        {{ asset('storage/'.$about->manager_image) }}manager_name_ar
+                        : $about->manager_name_en }}"
+                        class="relative rounded-[35px] w-full h-[620px] object-cover shadow-2xl">
+
+                    </div>
+
+                </div>
+
+                {{-- Content --}}
+                <div class="lg:col-span-8" data-aos="fade-left">
+
+                    <i class="fas fa-quote-left text-8xl text-orange-500/20 mb-8"></i>
+
+                    <div class="text-lg md:text-xl text-gray-300 leading-[2.2]">
+
+                        {!! $locale == 'ar'
+                            ? $about->manager_message_ar
+                            : $about->manager_message_en !!}
+
+                    </div>
+
+                    <div class="mt-12 flex items-center gap-5">
+
+                        <div class="w-16 h-1 bg-orange-500"></div>
+
+                        <div>
+                            <h3 class="text-3xl font-black text-white">
+
+                                {{ $locale == 'ar'
+                                    ? $about->manager_name_ar
+                                    : $about->manager_name_en }}
+
+                            </h3>
+
+                            <p class="text-orange-400 font-semibold mt-2">
+
+                                {{ $locale == 'ar'
+                                    ? $about->manager_position_ar
+                                    : $about->manager_position_en }}
+
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
 
     {{-- ================= ABOUT ================= --}}
     <section
