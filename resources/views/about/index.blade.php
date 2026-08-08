@@ -437,6 +437,104 @@
         </section>
 
     @endif
+
+
+    {{-- ================= VISION & MISSION ================= --}}
+    <section class="py-28 bg-slate-50 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="text-center mb-20"
+                 data-aos="fade-up">
+
+            <span
+                class="inline-flex px-5 py-2 rounded-full bg-orange-100 text-orange-500 font-bold">
+
+                {{ $locale=='ar'
+                    ? 'رؤيتنا ورسالتنا'
+                    : 'VISION & MISSION' }}
+
+            </span>
+
+                <h2 class="text-5xl font-black mt-8">
+
+                    {{ $locale=='ar'
+                        ? 'ما الذي يدفعنا للأمام'
+                        : 'What Drives Us Forward' }}
+
+                </h2>
+
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-10">
+
+                {{-- Vision --}}
+                <div
+                    data-aos="fade-right"
+                    class="group bg-white rounded-[32px] shadow-lg p-12 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
+
+                    <div
+                        class="w-24 h-24 rounded-full bg-orange-100 flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition">
+
+                        <i class="fas fa-eye text-4xl"></i>
+
+                    </div>
+
+                    <h3 class="text-4xl font-black mb-8">
+
+                        {{ $locale=='ar'
+ ? $about->vision_title_ar
+ : $about->vision_title_en }}
+
+                    </h3>
+
+                    <div
+                        class="leading-9 text-slate-600 prose max-w-none">
+
+                        {!! $locale=='ar'
+                            ? $about->vision_ar
+                            : $about->vision_en !!}
+
+                    </div>
+
+                </div>
+
+                {{-- Mission --}}
+                <div
+                    data-aos="fade-left"
+                    class="group bg-white rounded-[32px] shadow-lg p-12 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
+
+                    <div
+                        class="w-24 h-24 rounded-full bg-orange-100 flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition">
+
+                        <i class="fas fa-bullseye text-4xl"></i>
+
+                    </div>
+
+                    <h3 class="text-4xl font-black mb-8">
+
+                        {{ $locale=='ar'
+ ? $about->mission_title_ar
+ : $about->mission_title_en }}
+
+                    </h3>
+
+                    <div
+                        class="leading-9 text-slate-600 prose max-w-none">
+
+                        {!! $locale=='ar'
+                            ? $about->mission_ar
+                            : $about->mission_en !!}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
     {{-- ================= STATISTICS ================= --}}
     <section class="relative py-28 bg-[#0B1220] overflow-hidden">
 
@@ -574,103 +672,6 @@
 
     </section>
 
-
-    {{-- ================= VISION & MISSION ================= --}}
-    <section class="py-28 bg-slate-50 overflow-hidden">
-
-        <div class="max-w-7xl mx-auto px-6">
-
-            <div class="text-center mb-20"
-                 data-aos="fade-up">
-
-            <span
-                class="inline-flex px-5 py-2 rounded-full bg-orange-100 text-orange-500 font-bold">
-
-                {{ $locale=='ar'
-                    ? 'رؤيتنا ورسالتنا'
-                    : 'VISION & MISSION' }}
-
-            </span>
-
-                <h2 class="text-5xl font-black mt-8">
-
-                    {{ $locale=='ar'
-                        ? 'ما الذي يدفعنا للأمام'
-                        : 'What Drives Us Forward' }}
-
-                </h2>
-
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-10">
-
-                {{-- Vision --}}
-                <div
-                    data-aos="fade-right"
-                    class="group bg-white rounded-[32px] shadow-lg p-12 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
-
-                    <div
-                        class="w-24 h-24 rounded-full bg-orange-100 flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition">
-
-                        <i class="fas fa-eye text-4xl"></i>
-
-                    </div>
-
-                    <h3 class="text-4xl font-black mb-8">
-
-                        {{ $locale=='ar'
- ? $about->vision_title_ar
- : $about->vision_title_en }}
-
-                    </h3>
-
-                    <div
-                        class="leading-9 text-slate-600 prose max-w-none">
-
-                        {!! $locale=='ar'
-                            ? $about->vision_ar
-                            : $about->vision_en !!}
-
-                    </div>
-
-                </div>
-
-                {{-- Mission --}}
-                <div
-                    data-aos="fade-left"
-                    class="group bg-white rounded-[32px] shadow-lg p-12 hover:shadow-2xl hover:-translate-y-3 transition duration-500">
-
-                    <div
-                        class="w-24 h-24 rounded-full bg-orange-100 flex items-center justify-center mb-8 group-hover:bg-orange-500 group-hover:text-white transition">
-
-                        <i class="fas fa-bullseye text-4xl"></i>
-
-                    </div>
-
-                    <h3 class="text-4xl font-black mb-8">
-
-                        {{ $locale=='ar'
- ? $about->mission_title_ar
- : $about->mission_title_en }}
-
-                    </h3>
-
-                    <div
-                        class="leading-9 text-slate-600 prose max-w-none">
-
-                        {!! $locale=='ar'
-                            ? $about->mission_ar
-                            : $about->mission_en !!}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
     {{-- ================= WHY CHOOSE US ================= --}}
     <section class="py-28 bg-white overflow-hidden">
 
