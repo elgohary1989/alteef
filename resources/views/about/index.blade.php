@@ -101,43 +101,7 @@
     {{-- SECTION HEADER --}}
     {{-- ================================================= --}}
 
-    <div
-        class="text-center mb-14 md:mb-20"
-        data-aos="fade-up"
-        data-aos-duration="900">
 
-    <span
-        class="inline-flex
-               px-5 py-2
-               rounded-full
-               bg-orange-500/10
-               border border-orange-500/20
-               text-orange-400
-               font-bold">
-
-        {{ $locale == 'ar'
-            ? 'كلمة المدير التنفيذي'
-            : 'CEO Message' }}
-
-    </span>
-
-
-        <h2
-            class="text-4xl
-               md:text-5xl
-               lg:text-6xl
-               font-black
-               text-white
-               mt-6
-               leading-tight">
-
-            {{ $locale == 'ar'
-                ? 'رسالة من الإدارة التنفيذية'
-                : 'Message From Executive Management' }}
-
-        </h2>
-
-    </div>
 
     {{-- ================= ABOUT ================= --}}
     <section
@@ -249,6 +213,230 @@
         </div>
 
     </section>
+    {{-- ========================================================= --}}
+    {{-- CEO MESSAGE --}}
+    {{-- ========================================================= --}}
+
+    @if(
+        $about &&
+        ($locale == 'ar'
+            ? $about->manager_message_ar
+            : $about->manager_message_en)
+    )
+
+        <section class="relative py-24 md:py-28 bg-[#0B1220] overflow-hidden">
+
+            {{-- Background Effects --}}
+            <div class="absolute inset-0 pointer-events-none">
+
+                <div
+                    class="absolute -top-40 -left-32
+                   w-96 h-96
+                   bg-orange-500/10
+                   rounded-full
+                   blur-3xl">
+                </div>
+
+                <div
+                    class="absolute bottom-0 right-0
+                   w-[450px] h-[450px]
+                   bg-white/5
+                   rounded-full
+                   blur-3xl">
+                </div>
+
+            </div>
+
+
+            <div class="relative max-w-7xl mx-auto px-6">
+
+
+                {{-- SECTION HEADER --}}
+                <div
+                    class="text-center mb-14 md:mb-20"
+                    data-aos="fade-up"
+                    data-aos-duration="900">
+
+            <span
+                class="inline-flex
+                       px-5 py-2
+                       rounded-full
+                       bg-orange-500/10
+                       border border-orange-500/20
+                       text-orange-400
+                       font-bold">
+
+                {{ $locale == 'ar'
+                    ? 'كلمة المدير التنفيذي'
+                    : 'CEO Message' }}
+
+            </span>
+
+
+                    <h2
+                        class="text-4xl
+                       md:text-5xl
+                       lg:text-6xl
+                       font-black
+                       text-white
+                       mt-6
+                       leading-tight">
+
+                        {{ $locale == 'ar'
+                            ? 'رسالة من الإدارة التنفيذية'
+                            : 'Message From Executive Management' }}
+
+                    </h2>
+
+                </div>
+
+
+                {{-- CEO CARD --}}
+                <div
+                    class="bg-white/5
+                   border border-white/10
+                   backdrop-blur-xl
+                   rounded-[40px]
+                   overflow-hidden
+                   shadow-2xl">
+
+                    <div class="grid lg:grid-cols-5">
+
+
+                        {{-- IMAGE --}}
+                        @if($about->manager_image)
+
+                            <div
+                                class="lg:col-span-2
+                               relative
+                               min-h-[450px]
+                               lg:min-h-[600px]
+                               bg-[#09101C]"
+                                data-aos="{{ $locale == 'ar' ? 'fade-left' : 'fade-right' }}"
+                                data-aos-duration="1000">
+
+                                <img
+                                    src="{{ asset('storage/' . $about->manager_image) }}"
+                                    alt="{{ $locale == 'ar'
+                                ? $about->manager_name_ar
+                                : $about->manager_name_en }}"
+                                    class="absolute inset-0
+                                   w-full
+                                   h-full
+                                   object-cover
+                                   hover:scale-105
+                                   transition-transform
+                                   duration-700">
+
+                                <div
+                                    class="absolute inset-0
+                                   bg-gradient-to-t
+                                   from-black/60
+                                   via-transparent
+                                   to-transparent
+                                   pointer-events-none">
+                                </div>
+
+                            </div>
+
+                        @endif
+
+
+                        {{-- CONTENT --}}
+                        <div
+                            class="{{ $about->manager_image
+                        ? 'lg:col-span-3'
+                        : 'lg:col-span-5' }}
+                           p-8
+                           md:p-12
+                           lg:p-16"
+                            data-aos="{{ $locale == 'ar' ? 'fade-right' : 'fade-left' }}"
+                            data-aos-duration="1000"
+                            data-aos-delay="150">
+
+
+                            {{-- Quote --}}
+                            <div
+                                class="text-orange-500/20
+                               text-7xl
+                               md:text-8xl
+                               leading-none
+                               mb-6">
+
+                                <i class="fas fa-quote-right"></i>
+
+                            </div>
+
+
+                            {{-- Message --}}
+                            <div
+                                class="prose
+                               prose-invert
+                               prose-lg
+                               max-w-none
+                               text-gray-300
+                               leading-[2.2]">
+
+                                {!! $locale == 'ar'
+                                    ? $about->manager_message_ar
+                                    : $about->manager_message_en !!}
+
+                            </div>
+
+
+                            {{-- Signature --}}
+                            <div
+                                class="mt-12
+                               pt-8
+                               border-t
+                               border-white/10">
+
+                                <h3
+                                    class="text-2xl
+                                   md:text-3xl
+                                   font-black
+                                   text-white">
+
+                                    {{ $locale == 'ar'
+                                        ? $about->manager_name_ar
+                                        : $about->manager_name_en }}
+
+                                </h3>
+
+
+                                <div
+                                    class="w-20
+                                   h-1
+                                   bg-orange-500
+                                   rounded-full
+                                   my-4">
+                                </div>
+
+
+                                <p
+                                    class="text-orange-400
+                                   font-semibold
+                                   text-lg">
+
+                                    {{ $locale == 'ar'
+                                        ? $about->manager_position_ar
+                                        : $about->manager_position_en }}
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    @endif
     {{-- ================= STATISTICS ================= --}}
     <section class="relative py-28 bg-[#0B1220] overflow-hidden">
 
