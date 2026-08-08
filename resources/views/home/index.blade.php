@@ -184,91 +184,7 @@
         </div>
 
     @endif
-    {{-- ================= OUR CLIENTS ================= --}}
-    @if($clients->count())
 
-        <section class="py-24 bg-white overflow-hidden"
-                 data-aos="fade-up">
-
-            <div class="max-w-7xl mx-auto px-6">
-
-                <div class="text-center mb-16">
-
-            <span class="text-orange-500 uppercase tracking-widest font-bold">
-
-                {{ $locale=='ar'
-                    ? 'عملاؤنا'
-                    : 'OUR CLIENTS' }}
-
-            </span>
-
-                    <h2 class="text-4xl font-black text-slate-900 mt-4">
-
-                        {{ $locale=='ar'
-                            ? 'شركاء النجاح'
-                            : 'Trusted By Leading Companies' }}
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-            <div class="clients-marquee">
-
-                <div class="clients-track">
-
-                    @foreach($clients as $client)
-
-                        <div class="client-item">
-
-                            @if($client->url)
-                                <a href="{{ $client->url }}" target="_blank">
-                                    @endif
-
-                                    <img
-                                        src="{{ asset('storage/'.$client->logo) }}"
-                                        alt="{{ $client->name }}">
-
-                                    @if($client->url)
-                                </a>
-                            @endif
-
-                        </div>
-
-                    @endforeach
-
-
-                    {{-- تكرار مرة ثانية للحركة اللانهائية --}}
-
-                    @foreach($clients as $client)
-
-                        <div class="client-item">
-
-                            @if($client->url)
-                                <a href="{{ $client->url }}" target="_blank">
-                                    @endif
-
-                                    <img
-                                        src="{{ asset('storage/'.$client->logo) }}"
-                                        alt="{{ $client->name }}">
-
-                                    @if($client->url)
-                                </a>
-                            @endif
-
-                        </div>
-
-                    @endforeach
-
-                </div>
-
-            </div>
-
-        </section>
-
-    @endif
-    {{--
 
 
         {{-- ===== شريط إحصائيات إضافي ===== --}}
@@ -440,6 +356,91 @@
         </section>
 
     @endif
+    {{-- ================= OUR CLIENTS ================= --}}
+    @if($clients->count())
+
+        <section class="py-24 bg-white overflow-hidden"
+                 data-aos="fade-up">
+
+            <div class="max-w-7xl mx-auto px-6">
+
+                <div class="text-center mb-16">
+
+            <span class="text-orange-500 uppercase tracking-widest font-bold">
+
+                {{ $locale=='ar'
+                    ? 'عملاؤنا'
+                    : 'OUR CLIENTS' }}
+
+            </span>
+
+                    <h2 class="text-4xl font-black text-slate-900 mt-4">
+
+                        {{ $locale=='ar'
+                            ? 'شركاء النجاح'
+                            : 'Trusted By Leading Companies' }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="clients-marquee">
+
+                <div class="clients-track">
+
+                    @foreach($clients as $client)
+
+                        <div class="client-item">
+
+                            @if($client->url)
+                                <a href="{{ $client->url }}" target="_blank">
+                                    @endif
+
+                                    <img
+                                        src="{{ asset('storage/'.$client->logo) }}"
+                                        alt="{{ $client->name }}">
+
+                                    @if($client->url)
+                                </a>
+                            @endif
+
+                        </div>
+
+                    @endforeach
+
+
+                    {{-- تكرار مرة ثانية للحركة اللانهائية --}}
+
+                    @foreach($clients as $client)
+
+                        <div class="client-item">
+
+                            @if($client->url)
+                                <a href="{{ $client->url }}" target="_blank">
+                                    @endif
+
+                                    <img
+                                        src="{{ asset('storage/'.$client->logo) }}"
+                                        alt="{{ $client->name }}">
+
+                                    @if($client->url)
+                                </a>
+                            @endif
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        </section>
+
+    @endif
+    {{--
 
     {{-- ===== آراء العملاء ===== --}}
     @if($testimonials->count())
